@@ -4,6 +4,8 @@ const ctx = canvas.getContext("2d");
 
 const TAMANIO_CELDA = 25;
 let direccionSerpiente = "izquierda";
+
+let intervaloJuego;
 //const serpiente = [
 ////x: Math.floor(canvas.width / TAMANIO_CELDA / 2),
 //y: canvas.height / TAMANIO_CELDA / 2,
@@ -184,8 +186,6 @@ function moverAbajo() {
   return nuevaCabeza;
 }
 
-setInterval(moverSerpiente, 300);
-
 //crear aleaotiro la serpiete
 function crearSerpienteRandom() {
   let xRamdom = obtenerNumeroRandom(columnas - 2) + 2;
@@ -195,10 +195,8 @@ function crearSerpienteRandom() {
 
   // HORIZONTAL
   if (orientacion === 0) {
-
     // derecha
     if (obtenerNumeroRandom(2) === 0) {
-
       direccionSerpiente = "derecha";
 
       return [
@@ -222,7 +220,6 @@ function crearSerpienteRandom() {
 
   // abajo
   if (obtenerNumeroRandom(2) === 0) {
-
     direccionSerpiente = "abajo";
 
     return [
@@ -244,7 +241,14 @@ function crearSerpienteRandom() {
 
 //reiniciar
 
-function reiniciarJuego(){
-  serpiente=crearSerpienteRandom();
+function reiniciarJuego() {
+  clearInterval(intervaloJuego);
+  serpiente = crearSerpienteRandom();
   dibujarTodo();
+}
+
+function iniciarJuego() {
+  clearInterval(intervaloJuego);
+
+  intervaloJuego = setInterval(moverSerpiente, 300);
 }
