@@ -134,7 +134,15 @@ function moverSerpiente() {
       nuevaCabeza = moverAbajo();
       break;
   }
+  if (verificarColision(nuevaCabeza)) {
+    clearInterval(intervaloJuego);
 
+    serpiente = [];
+
+    dibujarTodo();
+
+    return;
+  }
   serpiente.unshift(nuevaCabeza);
 
   serpiente.pop();
@@ -251,4 +259,28 @@ function iniciarJuego() {
   clearInterval(intervaloJuego);
 
   intervaloJuego = setInterval(moverSerpiente, 300);
+}
+///coliciones
+function verificarColision(cabeza) {
+  // pared izquierda
+  if (cabeza.x < 0) {
+    return true;
+  }
+
+  // pared derecha
+  if (cabeza.x >= columnas) {
+    return true;
+  }
+
+  // pared arriba
+  if (cabeza.y < 0) {
+    return true;
+  }
+
+  // pared abajo
+  if (cabeza.y >= filas) {
+    return true;
+  }
+
+  return false;
 }
