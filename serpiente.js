@@ -3,8 +3,49 @@ const canvas = document.getElementById("canvasJuego");
 const ctx = canvas.getContext("2d");
 
 const TAMANIO_CELDA = 25;
+//const serpiente = [
+////x: Math.floor(canvas.width / TAMANIO_CELDA / 2),
+//y: canvas.height / TAMANIO_CELDA / 2,
+//},
+//{
+// x: Math.floor(canvas.width / TAMANIO_CELDA / 2) + 1,
+//y: canvas.height / TAMANIO_CELDA / 2,
+//},
+//{
+// x: Math.floor(canvas.width / TAMANIO_CELDA / 2) + 2,
+//y: canvas.height / TAMANIO_CELDA / 2,
+//},
+//{ x: Math.floor(canvas.width / TAMANIO_CELDA / 2) + 2,
+// y: (canvas.height / TAMANIO_CELDA / 2)+1 },
+//];
+
+const columnas = canvas.width / TAMANIO_CELDA;
+const filas = canvas.height / TAMANIO_CELDA;
+const serpiente = [
+  {
+    x: columnas - 1,
+    y: filas / 2,
+  },
+  {
+    x: columnas - 1,
+    y: filas - 11,
+  },
+  {
+    x: columnas - 2,
+    y: filas - 11,
+  },
+  {
+    x: columnas - 2,
+    y: filas - 10,
+  },
+  {
+    x: columnas - 2,
+    y: filas - 9,
+  },
+];
 
 // Primera pintura del juego al cargar la página
+
 dibujarTodo();
 
 // =========================
@@ -14,19 +55,29 @@ dibujarTodo();
 function limpiarCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+function pintarSerpiente() {
+  for (let i = 0; i < serpiente.length; i++) {
+    if (i === 0) {
+      pintarParte(serpiente[i].x, serpiente[i].y,"green");
+    } else {
+      pintarParte(serpiente[i].x, serpiente[i].y,"yellow");
+    }
+  }
+}D
 
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
-  pintarParte(5, 5);
-  pintarParte(10, 2);
-  pintarParte(
-    (canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA,
-    (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA,
-  );
-  pintarParte((canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA, 10);
-  pintarParte(0, (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA);
-  pintarParte((canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA, 0);
+  pintarSerpiente();
+  //pintarParte(5, 5);
+  //pintarParte(10, 2);
+  //pintarParte(
+  // (canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA,
+  //  (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA,
+  //);
+  //pintarParte((canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA, 10);
+  //pintarParte(0, (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA);
+  //pintarParte((canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA, 0);
 }
 
 function dibujarTablero() {
@@ -45,10 +96,10 @@ function dibujarTablero() {
   }
 }
 
-function pintarParte(lineaX, lineaY) {
+function pintarParte(lineaX, lineaY, color) {
   let valorX = lineaX * TAMANIO_CELDA;
   let valorY = lineaY * TAMANIO_CELDA;
-  ctx.fillStyle = "yellow";
+  ctx.fillStyle = color;
   ctx.fillRect(valorX, valorY, TAMANIO_CELDA, TAMANIO_CELDA);
   ctx.strokeStyle = "black";
   ctx.strokeRect(valorX, valorY, TAMANIO_CELDA, TAMANIO_CELDA);
