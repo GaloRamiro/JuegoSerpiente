@@ -241,3 +241,10 @@ function crearSerpienteRandom() {
     { x: xRamdom, y: yRamdom + 2 },
   ];
 }
+
+//reiniciar
+
+function reiniciarJuego(){
+  serpiente=crearSerpienteRandom();
+  dibujarTodo();
+}
