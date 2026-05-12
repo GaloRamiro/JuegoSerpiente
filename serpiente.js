@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvasJuego");
 const ctx = canvas.getContext("2d");
 
 const TAMANIO_CELDA = 25;
+let direccionSerpiente = "izquierda";
 //const serpiente = [
 ////x: Math.floor(canvas.width / TAMANIO_CELDA / 2),
 //y: canvas.height / TAMANIO_CELDA / 2,
@@ -58,12 +59,12 @@ function limpiarCanvas() {
 function pintarSerpiente() {
   for (let i = 0; i < serpiente.length; i++) {
     if (i === 0) {
-      pintarParte(serpiente[i].x, serpiente[i].y,"green");
+      pintarParte(serpiente[i].x, serpiente[i].y, "green");
     } else {
-      pintarParte(serpiente[i].x, serpiente[i].y,"yellow");
+      pintarParte(serpiente[i].x, serpiente[i].y, "yellow");
     }
   }
-}D
+}
 
 function dibujarTodo() {
   limpiarCanvas();
@@ -104,3 +105,83 @@ function pintarParte(lineaX, lineaY, color) {
   ctx.strokeStyle = "black";
   ctx.strokeRect(valorX, valorY, TAMANIO_CELDA, TAMANIO_CELDA);
 }
+
+//adelanto 12mAY26
+
+function cambiarDireccion(direccionNueva) {
+  direccionSerpiente = direccionNueva;
+}
+
+function moverSerpiente() {
+  let nuevaCabeza;
+
+  switch (direccionSerpiente) {
+    case "derecha":
+      nuevaCabeza = moverDerecha();
+      break;
+
+    case "izquierda":
+      nuevaCabeza = moverIzquierda();
+      break;
+
+    case "arriba":
+      nuevaCabeza = moverArriba();
+      break;
+    case "abajo":
+      nuevaCabeza = moverAbajo();
+      break;
+  }
+
+  serpiente.unshift(nuevaCabeza);
+
+  serpiente.pop();
+
+  dibujarTodo();
+}
+
+function moverDerecha() {
+  let cabeza = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabeza.x + 1,
+    y: cabeza.y,
+  };
+
+  return nuevaCabeza;
+}
+
+function moverIzquierda() {
+  let cabeza = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabeza.x - 1,
+    y: cabeza.y,
+  };
+
+  return nuevaCabeza;
+}
+
+function moverArriba() {
+  let cabeza = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabeza.x,
+    y: cabeza.y - 1,
+  };
+
+  return nuevaCabeza;
+}
+
+function moverAbajo() {
+  let cabeza = serpiente[0];
+
+  let nuevaCabeza = {
+    x: cabeza.x,
+    y: cabeza.y + 1,
+  };
+
+  return nuevaCabeza;
+}
+
+
+setInterval(moverSerpiente, 300);
