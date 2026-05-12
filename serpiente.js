@@ -6,6 +6,8 @@ const TAMANIO_CELDA = 25;
 let direccionSerpiente = "izquierda";
 
 let intervaloJuego;
+
+
 //const serpiente = [
 ////x: Math.floor(canvas.width / TAMANIO_CELDA / 2),
 //y: canvas.height / TAMANIO_CELDA / 2,
@@ -25,6 +27,7 @@ let intervaloJuego;
 const columnas = canvas.width / TAMANIO_CELDA;
 const filas = canvas.height / TAMANIO_CELDA;
 let serpiente = crearSerpienteRandom();
+let comida = crearComida();
 //const serpiente = [
 //{
 //   x: columnas - 1,
@@ -73,6 +76,7 @@ function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
   pintarSerpiente();
+  pintarComida();
   //pintarParte(5, 5);
   //pintarParte(10, 2);
   //pintarParte(
@@ -145,7 +149,12 @@ function moverSerpiente() {
   }
   serpiente.unshift(nuevaCabeza);
 
-  serpiente.pop();
+  // si come
+  if (nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y) {
+    comida = crearComida();
+  } else {
+    serpiente.pop();
+  }
 
   dibujarTodo();
 }
@@ -283,4 +292,15 @@ function verificarColision(cabeza) {
   }
 
   return false;
+}
+
+function crearComida() {
+  return {
+    x: obtenerNumeroRandom(columnas),
+    y: obtenerNumeroRandom(filas),
+  };
+}
+
+function pintarComida() {
+  pintarParte(comida.x, comida.y, "red");
 }
