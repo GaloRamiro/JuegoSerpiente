@@ -22,28 +22,29 @@ let direccionSerpiente = "izquierda";
 
 const columnas = canvas.width / TAMANIO_CELDA;
 const filas = canvas.height / TAMANIO_CELDA;
-const serpiente = [
-  {
-    x: columnas - 1,
-    y: filas / 2,
-  },
-  {
-    x: columnas - 1,
-    y: filas - 11,
-  },
-  {
-    x: columnas - 2,
-    y: filas - 11,
-  },
-  {
-    x: columnas - 2,
-    y: filas - 10,
-  },
-  {
-    x: columnas - 2,
-    y: filas - 9,
-  },
-];
+const serpiente = crearSerpienteRandom();
+//const serpiente = [
+//{
+//   x: columnas - 1,
+//  y: filas / 2,
+//},
+// {
+//  x: columnas - 1,
+// y: filas - 11,
+//},
+//{
+// x: columnas - 2,
+//y: filas - 11,
+//},
+//{
+// x: columnas - 2,
+//y: filas - 10,
+//},
+//{
+// x: columnas - 2,
+//y: filas - 9,
+//},
+//];
 
 // Primera pintura del juego al cargar la página
 
@@ -183,5 +184,25 @@ function moverAbajo() {
   return nuevaCabeza;
 }
 
-
 setInterval(moverSerpiente, 300);
+
+//crear aleaotiro la serpiete
+function crearSerpienteRandom() {
+  let xRamdom = obtenerNumeroRandom(columnas);
+  let yRamdom = obtenerNumeroRandom(filas);
+  let orientacion = obtenerNumeroRandom(2);
+
+  //Horizontal
+  if (orientacion === 0) {
+    return [
+      { x: xRamdom, y: yRamdom },
+      { x: xRamdom - 1, y: yRamdom },
+      { x: xRamdom - 2, y: yRamdom },
+    ];
+  }
+  return[
+    {x: xRamdom, y: yRamdom},
+    {x: xRamdom, y: yRamdom-1},
+    {x: xRamdom, y: yRamdom-2},
+  ];
+}
