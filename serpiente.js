@@ -6,8 +6,8 @@ const TAMANIO_CELDA = 25;
 let direccionSerpiente = "izquierda";
 
 let intervaloJuego;
-
-
+let puntaje = 0;
+const textoPuntaje = document.getElementById("puntaje");
 //const serpiente = [
 ////x: Math.floor(canvas.width / TAMANIO_CELDA / 2),
 //y: canvas.height / TAMANIO_CELDA / 2,
@@ -151,6 +151,8 @@ function moverSerpiente() {
 
   // si come
   if (nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y) {
+    puntaje++;
+    textoPuntaje.textContent = puntaje;
     comida = crearComida();
   } else {
     serpiente.pop();
@@ -290,7 +292,12 @@ function verificarColision(cabeza) {
   if (cabeza.y >= filas) {
     return true;
   }
-
+  // choque con el cuerpo
+  for (let i = 1; i < serpiente.length; i++) {
+    if (cabeza.x === serpiente[i].x && cabeza.y === serpiente[i].y) {
+      return true;
+    }
+  }
   return false;
 }
 
@@ -303,4 +310,8 @@ function crearComida() {
 
 function pintarComida() {
   pintarParte(comida.x, comida.y, "red");
+}
+//pausar
+function pausarJuego() {
+  clearInterval(intervaloJuego);
 }
