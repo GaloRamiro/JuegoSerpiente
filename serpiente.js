@@ -22,7 +22,7 @@ let direccionSerpiente = "izquierda";
 
 const columnas = canvas.width / TAMANIO_CELDA;
 const filas = canvas.height / TAMANIO_CELDA;
-const serpiente = crearSerpienteRandom();
+let serpiente = crearSerpienteRandom();
 //const serpiente = [
 //{
 //   x: columnas - 1,
@@ -188,21 +188,56 @@ setInterval(moverSerpiente, 300);
 
 //crear aleaotiro la serpiete
 function crearSerpienteRandom() {
-  let xRamdom = obtenerNumeroRandom(columnas);
-  let yRamdom = obtenerNumeroRandom(filas);
+  let xRamdom = obtenerNumeroRandom(columnas - 2) + 2;
+  let yRamdom = obtenerNumeroRandom(filas - 2) + 2;
+
   let orientacion = obtenerNumeroRandom(2);
 
-  //Horizontal
+  // HORIZONTAL
   if (orientacion === 0) {
+
+    // derecha
+    if (obtenerNumeroRandom(2) === 0) {
+
+      direccionSerpiente = "derecha";
+
+      return [
+        { x: xRamdom, y: yRamdom },
+        { x: xRamdom - 1, y: yRamdom },
+        { x: xRamdom - 2, y: yRamdom },
+      ];
+    }
+
+    // izquierda
+    direccionSerpiente = "izquierda";
+
     return [
       { x: xRamdom, y: yRamdom },
-      { x: xRamdom - 1, y: yRamdom },
-      { x: xRamdom - 2, y: yRamdom },
+      { x: xRamdom + 1, y: yRamdom },
+      { x: xRamdom + 2, y: yRamdom },
     ];
   }
-  return[
-    {x: xRamdom, y: yRamdom},
-    {x: xRamdom, y: yRamdom-1},
-    {x: xRamdom, y: yRamdom-2},
+
+  // VERTICAL
+
+  // abajo
+  if (obtenerNumeroRandom(2) === 0) {
+
+    direccionSerpiente = "abajo";
+
+    return [
+      { x: xRamdom, y: yRamdom },
+      { x: xRamdom, y: yRamdom - 1 },
+      { x: xRamdom, y: yRamdom - 2 },
+    ];
+  }
+
+  // arriba
+  direccionSerpiente = "arriba";
+
+  return [
+    { x: xRamdom, y: yRamdom },
+    { x: xRamdom, y: yRamdom + 1 },
+    { x: xRamdom, y: yRamdom + 2 },
   ];
 }
