@@ -2,131 +2,249 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
+   font-family: "Trebuchet MS", "Verdana", sans-serif;
+   }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1b5dc7, #2c447c);
-    color: white;
+    background: #b7b7b7;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    color: #2c3a2c;
+}
+/* MEJORA VISUAL RETRO */
+
+h1 {
+    letter-spacing: 1px;
+    font-weight: 900;
 }
 
+.tarjeta-info strong {
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.mensaje {
+    letter-spacing: 0.5px;
+}
+
+/* EFECTO LCD SUAVE */
+
+canvas {
+    position: relative;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 100% 3px;
+}
+/* CARCASA CELULAR */
 .contenedor-juego {
     width: 100%;
     max-width: 720px;
-    background: #3b65c0;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+
+    background: linear-gradient(
+        145deg,
+        #d7d7d7,
+        #9d9d9d
+    );
+
+    border-radius: 35px;
+
+    padding: 28px;
+
+    border:
+        8px solid #7a7a7a;
+
+    box-shadow:
+        inset -6px -6px 12px #f1f1f1,
+        inset 6px 6px 12px #6f6f6f,
+        0 15px 30px rgba(0,0,0,0.4);
+
     text-align: center;
 }
 
+/* TITULO */
 h1 {
     margin-bottom: 10px;
     font-size: 32px;
-    color: #c5ad22;
+
+    color: #313131;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
 }
 
 .descripcion {
     margin-bottom: 18px;
-    color: #cbd5e1;
-    line-height: 1.5;
+    color: #404040;
 }
 
+/* PANEL INFO */
 .panel-info {
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
 }
 
 .tarjeta-info {
     flex: 1;
     min-width: 150px;
-    background: #1f2937;
+
+    background: #b8b8b8;
+
     padding: 14px;
+
     border-radius: 14px;
-    border: 1px solid #374151;
+
+    border:
+        2px solid #7e7e7e;
+
+    box-shadow:
+        inset -2px -2px 5px #e8e8e8,
+        inset 2px 2px 5px #7a7a7a;
 }
 
 .tarjeta-info span {
     display: block;
     font-size: 14px;
-    color: #94a3b8;
     margin-bottom: 4px;
+    color: #444;
 }
 
 .tarjeta-info strong {
     font-size: 24px;
-    color: #15fa34;
+    color: #1f2a1f;
 }
 
+/* PANTALLA LCD */
 canvas {
     width: 100%;
     max-width: 500px;
-    background: #0d194d;
-    border: 4px solid #c522a2;
-    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #c8d6b9,
+            #b7c8a2
+        );
+
+    border:
+        12px solid #4d4d4d;
+
+    border-radius: 10px;
+
     display: block;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 22px auto;
+
+    image-rendering: pixelated;
+
+    box-shadow:
+        inset 0 0 12px rgba(0,0,0,0.2);
 }
 
+/* CONTROLES */
 .controles {
     display: grid;
     grid-template-columns: repeat(3, 90px);
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
+/* BOTONES NOKIA */
 .controles button,
 .acciones button {
+
     border: none;
-    border-radius: 12px;
-    padding: 12px 16px;
-    background: #22c55e;
-    color: #052e16;
+
+    border-radius: 50%;
+
+    width: 72px;
+    height: 72px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9d9d9,
+            #8d8d8d
+        );
+
+    color: #222;
+
+    font-size: 22px;
     font-weight: bold;
+
     cursor: pointer;
-    transition: 0.2s;
+
+    box-shadow:
+        -4px -4px 8px #f5f5f5,
+        4px 4px 8px #666;
 }
 
 .controles button:hover,
 .acciones button:hover {
-    transform: scale(1.05);
-    background: #86efac;
+    transform: scale(1.04);
+}
+
+.controles button:active,
+.acciones button:active {
+
+    box-shadow:
+        inset 3px 3px 6px #666,
+        inset -3px -3px 6px #eee;
+
+    transform: scale(0.96);
 }
 
 .vacio {
     visibility: hidden;
 }
 
+/* BOTONES ACCIONES */
 .acciones {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
-.acciones .secundario {
-    background: #38bdf8;
-    color: #082f49;
+.acciones button {
+    border-radius: 14px;
+
+    width: auto;
+    height: auto;
+
+    padding: 12px 20px;
 }
 
+.acciones .secundario {
+    background:
+        linear-gradient(
+            145deg,
+            #cfcfcf,
+            #8d8d8d
+        );
+}
+
+/* TEXTO */
 .mensaje {
-    margin-top: 14px;
-    color: #e2e8f0;
+    margin-top: 16px;
+    color: #2d2d2d;
     min-height: 24px;
     font-weight: bold;
 }
 
 @media (max-width: 520px) {
+
     h1 {
         font-size: 24px;
     }
@@ -137,10 +255,7 @@ canvas {
 
     .controles button,
     .acciones button {
-        padding: 10px;
+        width: 62px;
+        height: 62px;
     }
-}
-#canvasJuego{
-  border: 2px solid black;
-  background: white;
 }
