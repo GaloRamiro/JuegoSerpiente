@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juego de la Serpiente - Taller</title>
     <link rel="stylesheet" href="serpiente.css" />
+    <link rel="icon" href="imagenes/LogoSerpiente.svg">
   </head>
   <body>
     <main class="contenedor-juego">
-      <h1>🐍 Juego de la Serpiente</h1>
+      <h1>Juego de la Serpiente</h1>
       <p class="descripcion">Agrega una descripción creativa</p>
 
       <section class="panel-info">
@@ -26,24 +27,31 @@
 
       <section class="controles">
         <button class="vacio">-</button>
-        <button onclick="cambiarDireccion('arriba')">⬆️</button>
+        <button id="btnArriba" onclick="cambiarDireccion('arriba')">⬆️</button>
         <button class="vacio">-</button>
 
-        <button onclick="cambiarDireccion('izquierda')">⬅️</button>
-        <button onclick="pausarJuego()">⏸️</button>
-        <button onclick="cambiarDireccion('derecha')">➡️</button>
+        <button id="btnIzquierda" onclick="cambiarDireccion('izquierda')">
+          ⬅️
+        </button>
+        <button id="btnPausa" onclick="pausarJuego()">⏸️</button>
+        <button id="btnDerecha" onclick="cambiarDireccion('derecha')">
+          ➡️
+        </button>
 
         <button class="vacio">-</button>
-        <button onclick="cambiarDireccion('abajo')">⬇️</button>
+        <button id="btnAbajo" onclick="cambiarDireccion('abajo')">⬇️</button>
         <button class="vacio">-</button>
       </section>
 
       <section class="acciones">
-        <button onclick="iniciarJuego()">Iniciar</button>
-        <button class="secundario" onclick="reiniciarJuego()">Reiniciar</button>
+        <button id="btnIniciar" onclick="iniciarJuego()">Iniciar</button>
+        <button id="btnReiniciar" class="secundario" onclick="reiniciarJuego()">
+          Reiniciar
+        </button>
       </section>
 
       <p id="mensaje" class="mensaje">Presiona iniciar para comenzar.</p>
+      <audio id="sonidoComer" src="multimedia/masticar.mp3"></audio>
     </main>
     <script src="utilitarios.js"></script>
     <script src="serpiente.js"></script>

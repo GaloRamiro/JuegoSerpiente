@@ -6,7 +6,9 @@ const TAMANIO_CELDA = 25;
 let direccionSerpiente = "izquierda";
 
 let intervaloJuego;
+
 let puntaje = 0;
+let velocidad = 300;
 const textoPuntaje = document.getElementById("puntaje");
 //const serpiente = [
 ////x: Math.floor(canvas.width / TAMANIO_CELDA / 2),
@@ -116,9 +118,24 @@ function pintarParte(lineaX, lineaY, color) {
 //adelanto 12mAY26
 
 function cambiarDireccion(direccionNueva) {
+  if (direccionSerpiente === "derecha" && direccionNueva === "izquierda") {
+    return;
+  }
+
+  if (direccionSerpiente === "izquierda" && direccionNueva === "derecha") {
+    return;
+  }
+
+  if (direccionSerpiente === "arriba" && direccionNueva === "abajo") {
+    return;
+  }
+
+  if (direccionSerpiente === "abajo" && direccionNueva === "arriba") {
+    return;
+  }
+
   direccionSerpiente = direccionNueva;
 }
-
 function moverSerpiente() {
   let nuevaCabeza;
 
@@ -140,8 +157,9 @@ function moverSerpiente() {
   }
   if (verificarColision(nuevaCabeza)) {
     clearInterval(intervaloJuego);
-
-    serpiente = [];
+    //BLOQUEAR BOTONES
+    bloquearBotones();
+    //serpiente = []; con esto borramos l aserpiete para ver si los botones dejan de funcionar
 
     dibujarTodo();
 
@@ -153,6 +171,12 @@ function moverSerpiente() {
   if (nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y) {
     puntaje++;
     textoPuntaje.textContent = puntaje;
+    document.getElementById("sonidoComer").play();
+    if (velocidad > 80) {
+      velocidad -= 2;
+    }
+    clearInterval(intervaloJuego);
+    intervaloJuego = setInterval(moverSerpiente, velocidad);
     comida = crearComida();
   } else {
     serpiente.pop();
@@ -263,38 +287,51 @@ function crearSerpienteRandom() {
 function reiniciarJuego() {
   clearInterval(intervaloJuego);
   serpiente = crearSerpienteRandom();
+  desbloquearBotones();
+  mostrarTexto("estado", "Listo");
   dibujarTodo();
 }
 
 function iniciarJuego() {
   clearInterval(intervaloJuego);
 
-  intervaloJuego = setInterval(moverSerpiente, 300);
+  intervaloJuego = setInterval(moverSerpiente, velocidad);
 }
 ///coliciones
 function verificarColision(cabeza) {
   // pared izquierda
   if (cabeza.x < 0) {
+    mostrarTexto("estado", "Game Over");
+    gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared derecha
   if (cabeza.x >= columnas) {
+    mostrarTexto("estado", "Game Over");
+    gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared arriba
   if (cabeza.y < 0) {
+    mostrarTexto("estado", "Game Over");
+    gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared abajo
   if (cabeza.y >= filas) {
+    mostrarTexto("estado", "Game Over");
+    gameOver("Perdiste la partida 💀");
     return true;
   }
+
   // choque con el cuerpo
   for (let i = 1; i < serpiente.length; i++) {
     if (cabeza.x === serpiente[i].x && cabeza.y === serpiente[i].y) {
+      mostrarTexto("estado", "Game Over");
+      gameOver("Perdiste la partida 💀");
       return true;
     }
   }
