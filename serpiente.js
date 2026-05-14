@@ -277,27 +277,33 @@ function iniciarJuego() {
 function verificarColision(cabeza) {
   // pared izquierda
   if (cabeza.x < 0) {
+     gameOver("Perdiste la partida 💀");
     return true;
+    
   }
 
   // pared derecha
   if (cabeza.x >= columnas) {
+    gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared arriba
   if (cabeza.y < 0) {
+    gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared abajo
   if (cabeza.y >= filas) {
+   gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // choque con el cuerpo
   for (let i = 1; i < serpiente.length; i++) {
     if (cabeza.x === serpiente[i].x && cabeza.y === serpiente[i].y) {
+      gameOver("Perdiste la partida 💀");
       return true;
     }
   }
