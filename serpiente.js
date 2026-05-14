@@ -3,10 +3,11 @@ const canvas = document.getElementById("canvasJuego");
 const ctx = canvas.getContext("2d");
 
 const TAMANIO_CELDA = 25;
-<<<<<<< Updated upstream
 let direccionSerpiente = "izquierda";
 
 let intervaloJuego;
+
+
 let puntaje = 0;
 const textoPuntaje = document.getElementById("puntaje");
 //const serpiente = [
@@ -51,13 +52,6 @@ let comida = crearComida();
 //y: filas - 9,
 //},
 //];
-=======
-const serpiente = [
-  { x: 5, y: 4 },
-  { x: 10, y: 10 },
-  { x: 8, y: 0 },
-];
->>>>>>> Stashed changes
 
 // Primera pintura del juego al cargar la página
 
@@ -83,7 +77,6 @@ function pintarSerpiente() {
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
-<<<<<<< Updated upstream
   pintarSerpiente();
   pintarComida();
   //pintarParte(5, 5);
@@ -91,21 +84,10 @@ function dibujarTodo() {
   //pintarParte(
   // (canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA,
   //  (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA,
-=======
-  //pintarParte(5, 5);
-  //pintarParte(10, 2);
-  //pintarParte(
-    //(canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA,
-   // (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA,
->>>>>>> Stashed changes
   //);
   //pintarParte((canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA, 10);
   //pintarParte(0, (canvas.width - TAMANIO_CELDA) / TAMANIO_CELDA);
   //pintarParte((canvas.height - TAMANIO_CELDA) / TAMANIO_CELDA, 0);
-<<<<<<< Updated upstream
-=======
-  pintarSerpiente();
->>>>>>> Stashed changes
 }
 
 function dibujarTablero() {
@@ -133,7 +115,6 @@ function pintarParte(lineaX, lineaY, color) {
   ctx.strokeRect(valorX, valorY, TAMANIO_CELDA, TAMANIO_CELDA);
 }
 
-<<<<<<< Updated upstream
 //adelanto 12mAY26
 
 function cambiarDireccion(direccionNueva) {
@@ -313,6 +294,7 @@ function verificarColision(cabeza) {
   if (cabeza.y >= filas) {
     return true;
   }
+
   // choque con el cuerpo
   for (let i = 1; i < serpiente.length; i++) {
     if (cabeza.x === serpiente[i].x && cabeza.y === serpiente[i].y) {
@@ -335,10 +317,4 @@ function pintarComida() {
 //pausar
 function pausarJuego() {
   clearInterval(intervaloJuego);
-=======
-function pintarSerpiente() {
-  for (let i = 0; i <= serpiente.length; i++) {
-    pintarParte(serpiente[i].x, serpiente[i].y);
-  }
->>>>>>> Stashed changes
 }
