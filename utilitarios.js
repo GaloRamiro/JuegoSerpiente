@@ -44,3 +44,27 @@ function gameOver(mensaje) {
     }, 400);
   }, 2200);
 }
+
+function mostrarTexto(idComponente, mensaje) {
+  let componente;
+  componente = document.getElementById(idComponente);
+  componente.innerText = mensaje;
+}
+
+function desbloquearBotones() {
+  document.getElementById("btnArriba").disabled = false;
+  document.getElementById("btnAbajo").disabled = false;
+  document.getElementById("btnIzquierda").disabled = false;
+  document.getElementById("btnDerecha").disabled = false;
+  document.getElementById("btnPausa").disabled = false;
+  document.getElementById("btnIniciar").disabled = false;
+}
+
+function bloquearBotones() {
+  document.getElementById("btnArriba").disabled = true;
+  document.getElementById("btnAbajo").disabled = true;
+  document.getElementById("btnIzquierda").disabled = true;
+  document.getElementById("btnDerecha").disabled = true;
+  document.getElementById("btnPausa").disabled = true;
+  document.getElementById("btnIniciar").disabled = true;
+}

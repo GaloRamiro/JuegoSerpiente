@@ -7,7 +7,6 @@ let direccionSerpiente = "izquierda";
 
 let intervaloJuego;
 
-
 let puntaje = 0;
 const textoPuntaje = document.getElementById("puntaje");
 //const serpiente = [
@@ -142,7 +141,8 @@ function moverSerpiente() {
   }
   if (verificarColision(nuevaCabeza)) {
     clearInterval(intervaloJuego);
-
+    //BLOQUEAR BOTONES
+    bloquearBotones();
     serpiente = [];
 
     dibujarTodo();
@@ -265,6 +265,8 @@ function crearSerpienteRandom() {
 function reiniciarJuego() {
   clearInterval(intervaloJuego);
   serpiente = crearSerpienteRandom();
+  desbloquearBotones();
+  mostrarTexto("estado", "Listo");
   dibujarTodo();
 }
 
@@ -277,32 +279,36 @@ function iniciarJuego() {
 function verificarColision(cabeza) {
   // pared izquierda
   if (cabeza.x < 0) {
-     gameOver("Perdiste la partida 💀");
+    mostrarTexto("estado", "Game Over");
+    gameOver("Perdiste la partida 💀");
     return true;
-    
   }
 
   // pared derecha
   if (cabeza.x >= columnas) {
+    mostrarTexto("estado", "Game Over");
     gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared arriba
   if (cabeza.y < 0) {
+    mostrarTexto("estado", "Game Over");
     gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // pared abajo
   if (cabeza.y >= filas) {
-   gameOver("Perdiste la partida 💀");
+    mostrarTexto("estado", "Game Over");
+    gameOver("Perdiste la partida 💀");
     return true;
   }
 
   // choque con el cuerpo
   for (let i = 1; i < serpiente.length; i++) {
     if (cabeza.x === serpiente[i].x && cabeza.y === serpiente[i].y) {
+      mostrarTexto("estado", "Game Over");
       gameOver("Perdiste la partida 💀");
       return true;
     }
