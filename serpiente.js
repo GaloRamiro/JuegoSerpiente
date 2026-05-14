@@ -287,6 +287,8 @@ function crearSerpienteRandom() {
 function reiniciarJuego() {
   clearInterval(intervaloJuego);
   serpiente = crearSerpienteRandom();
+  puntaje = 0;
+  textoPuntaje.textContent = puntaje;
   desbloquearBotones();
   mostrarTexto("estado", "Listo");
   dibujarTodo();
