@@ -6,6 +6,8 @@ const TAMANIO_CELDA = 25;
 let direccionSerpiente = "izquierda";
 
 let intervaloJuego;
+
+
 let puntaje = 0;
 const textoPuntaje = document.getElementById("puntaje");
 //const serpiente = [
@@ -292,6 +294,7 @@ function verificarColision(cabeza) {
   if (cabeza.y >= filas) {
     return true;
   }
+
   // choque con el cuerpo
   for (let i = 1; i < serpiente.length; i++) {
     if (cabeza.x === serpiente[i].x && cabeza.y === serpiente[i].y) {
