@@ -23,9 +23,12 @@
         </div>
       </section>
 
-      <canvas id="canvasJuego" width="600" height="600"></canvas>
+    <div class="area-juego">
+  <canvas id="canvasJuego" width="600" height="600"></canvas>
 
-      <section class="controles">
+  <section class="controles">
+
+      
         <button class="vacio">-</button>
         <button id="btnArriba" onclick="cambiarDireccion('arriba')">⬆️</button>
         <button class="vacio">-</button>
@@ -42,7 +45,7 @@
         <button id="btnAbajo" onclick="cambiarDireccion('abajo')">⬇️</button>
         <button class="vacio">-</button>
       </section>
-
+</div>
       <section class="acciones">
         <button id="btnIniciar" onclick="iniciarJuego()">Iniciar</button>
         <button id="btnReiniciar" class="secundario" onclick="reiniciarJuego()">
