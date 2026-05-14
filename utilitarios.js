@@ -58,8 +58,8 @@ function desbloquearBotones() {
   document.getElementById("btnDerecha").disabled = false;
   document.getElementById("btnPausa").disabled = false;
   document.getElementById("btnIniciar").disabled = false;
+  document.getElementById("btnReiniciar").disabled = false;
 }
-
 function bloquearBotones() {
   document.getElementById("btnArriba").disabled = true;
   document.getElementById("btnAbajo").disabled = true;
@@ -67,4 +67,7 @@ function bloquearBotones() {
   document.getElementById("btnDerecha").disabled = true;
   document.getElementById("btnPausa").disabled = true;
   document.getElementById("btnIniciar").disabled = true;
+
+  // reiniciar sigue activo
+  document.getElementById("btnReiniciar").disabled = false;
 }
