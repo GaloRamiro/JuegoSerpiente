@@ -45,7 +45,7 @@ canvas {
 /* CARCASA CELULAR */
 .contenedor-juego {
   width: 100%;
-  max-width: 720px;
+  max-width: 1100px;
 
   background: linear-gradient(145deg, #d7d7d7, #9d9d9d);
 
@@ -171,6 +171,17 @@ h1 {
 .alerta-modal p {
   color: white;
 }
+.area-juego {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
 /* PANTALLA LCD */
 canvas {
   width: 100%;
@@ -183,7 +194,7 @@ canvas {
   border-radius: 10px;
 
   display: block;
-  margin: 0 auto 22px auto;
+  margin: 0;
 
   image-rendering: pixelated;
 
@@ -193,13 +204,17 @@ canvas {
 /* CONTROLES */
 .controles {
   display: grid;
-  grid-template-columns: repeat(3, 90px);
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
 
+  grid-template-columns: repeat(3, 70px);
+
+  gap: 8px;
+
+  margin-left: 30px;
+
+  justify-content: center;
+
+  align-items: center;
+}
 /* BOTONES NOKIA */
 .controles button,
 .acciones button {
@@ -207,8 +222,8 @@ canvas {
 
   border-radius: 50%;
 
-  width: 72px;
-  height: 72px;
+  width: 62px;
+  height: 62px;
 
   background: linear-gradient(145deg, #d9d9d9, #8d8d8d);
 
@@ -284,5 +299,10 @@ canvas {
   .acciones button {
     width: 62px;
     height: 62px;
+  }
+}
+@media (max-width: 900px) {
+  .area-juego {
+    flex-direction: column;
   }
 }
